@@ -70,6 +70,19 @@ check_config() {
     if [ ! -e /etc/ssh/sshd_not_to_be_run ]; then
 	/usr/sbin/sshd $SSHD_OPTS -t || exit 1
     fi
+    
+    # Create host keys if needed, taken from Slackware SSH init script.
+    if [ ! -r /etc/ssh/ssh_host_key ]; then
+	/usr/bin/ssh-keygen -t rsa1 -f /etc/ssh/ssh_host_key -N ''
+    fi
+
+    if [ ! -f /etc/ssh/ssh_host_dsa_key ]; then
+	/usr/bin/ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -N ''
+    fi
+
+    if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then
+	/usr/bin/ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N ''
+    fi
 }
 
 export PATH="${PATH:+$PATH:}/usr/sbin:/sbin"
