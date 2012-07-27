@@ -1,0 +1,13 @@
+TARGETS = dns2tcp ifplugd openvpn stunnel4 gsm-utils plugui iodined bluetooth urandom fuse sendsigs rsyslog umountnfs.sh hwclock.sh networking ifupdown umountfs cryptdisks cryptdisks-early umountroot halt reboot
+sendsigs: dns2tcp stunnel4 gsm-utils bluetooth fuse openvpn ifplugd plugui iodined
+rsyslog: stunnel4 gsm-utils sendsigs bluetooth openvpn plugui iodined
+umountnfs.sh: dns2tcp stunnel4 gsm-utils sendsigs rsyslog bluetooth fuse openvpn ifplugd plugui iodined
+hwclock.sh: rsyslog
+networking: umountnfs.sh openvpn ifplugd iodined
+ifupdown: umountnfs.sh openvpn ifplugd networking iodined
+umountfs: ifupdown dns2tcp stunnel4 urandom gsm-utils bluetooth umountnfs.sh fuse openvpn ifplugd hwclock.sh networking plugui iodined
+cryptdisks: umountfs
+cryptdisks-early: cryptdisks
+umountroot: umountfs cryptdisks cryptdisks-early
+halt: umountroot
+reboot: umountroot

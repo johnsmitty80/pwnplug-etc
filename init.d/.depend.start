@@ -1,0 +1,15 @@
+TARGETS = dns2tcp rsyslog ifplugd killprocs openvpn stunnel4 gsm-utils dbus plugui iodined bootlogs cron ssh bluetooth single rmnologin rc.local stop-bootlogd
+INTERACTIVE = openvpn
+openvpn: rsyslog
+stunnel4: rsyslog
+gsm-utils: rsyslog
+dbus: rsyslog
+plugui: rsyslog
+iodined: rsyslog
+cron: rsyslog
+ssh: rsyslog
+bluetooth: rsyslog dbus
+single: killprocs bootlogs
+rmnologin: dns2tcp stunnel4 rsyslog gsm-utils bluetooth dbus openvpn ifplugd plugui iodined bootlogs cron ssh
+rc.local: rsyslog dns2tcp stunnel4 gsm-utils bluetooth dbus openvpn ifplugd plugui iodined bootlogs cron ssh
+stop-bootlogd: dns2tcp stunnel4 rsyslog gsm-utils bluetooth dbus openvpn ifplugd plugui iodined bootlogs cron ssh

@@ -1,0 +1,62 @@
+# Be extra verbose
+debug
+kdebug 3
+
+# Serial device to which the modem is connected.
+/dev/ttyACM0
+
+# Speed of the serial line.
+460800
+
+# Assumes that your IP address is allocated dynamically by the ISP.
+noipdefault
+
+# Try to get the name server addresses from the ISP.
+usepeerdns
+
+# Use this connection as the default route.
+defaultroute
+
+# Redial automatically if connection is lost.
+#persist
+
+# Authentication
+# require-pap
+# refuse-chap
+show-password
+user att
+password dummypass
+
+# pppd will detach from controlling terminal when connection is up
+# updetach
+
+# Idle timeout
+# idle 7200
+
+# Disable ppp compression
+novj
+#novjccomp
+#nopcomp
+#nodeflate
+noccp
+
+# put in a default gateway even if one was present before
+#replacedefaultroute
+
+# if connection has failed, redial in this number of seconds
+# Don't go below 5 or the modem may become unresponsive
+# holdoff 5
+
+# Disable LCP keepalives, enable passive LCP
+lcp-echo-failure 0
+lcp-echo-interval 0
+passive
+
+# Hardware flow control
+crtscts
+
+# Use modem control lines
+modem
+
+# Run chat script
+connect "/usr/sbin/chat -vf /etc/ppp/peers/e160_chat"  

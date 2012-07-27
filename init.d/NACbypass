@@ -1,0 +1,11 @@
+### BEGIN INIT INFO
+# Provides:          NACbypass
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Enables NAC Bypass mode at startup
+### END INIT INFO
+
+#!/bin/bash
+/var/pwnplug/scripts/bypass_mode.sh > /var/log/nacbypass.log 2>&1 &
