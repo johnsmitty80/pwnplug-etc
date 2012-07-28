@@ -1,0 +1,9 @@
+================================================================================
+=         Experimental Configuration Files for Pwnie Express Pwn Plug          =
+================================================================================
+Changes from stock 1.1:
+
+Changed hostname (PwnPlug)
+Removed cloned SSH keys
+Generate new SSH keys on first boot
+Removed duplicate files
